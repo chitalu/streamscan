@@ -208,7 +208,7 @@ void test_scan(clContext *clCxt,int elemnum)
     free(cpuoutput);
     return;
 }
-
+#if BUILD_AS_EXECUTABLE
 int main()
 {
     int elemnum = 1024 * 1024 * 16;
@@ -221,3 +221,4 @@ int main()
     printf("kernel min total time:%lf     \n",timeRcd.min_totaltime);
     return 0;
 }
+#endif
