@@ -39,8 +39,13 @@ void scan(clContext *clCxt,cl_mem &ginput,cl_mem &goutput,Plan *plan,int elemnum
     
     timeRcd.kerneltime = 0;
     timeRcd.totaltime = 0;
+#if ENABLE_FLOYD_FIXES
+    if(globalthreads[0] != 0){
+        executeKernel("scan.cl","scan",args,globalthreads,localthreads,build_options,clCxt);
+    }
+#else
     executeKernel("scan.cl","scan",args,globalthreads,localthreads,build_options,clCxt);
-
+#endif
     if(taillen!=0){
   	    sprintf(build_options ,
         "-D NB_VEC_TAIL -D NB_L64 -D NB_G%d -D NB_CTA_16 -D STEP_NUM=32 -D NB_REG_GRP=1 -D NB_REG_SIZE=16 -D NB_LOCAL_GRP=1 -D NB_LOCAL_SIZE=17",

@@ -17,6 +17,9 @@
 #ifndef BUILD_AS_EXECUTABLE
 #define BUILD_AS_EXECUTABLE 0 // enables main function
 #endif
+#ifndef ENABLE_FLOYD_FIXES
+#define ENABLE_FLOYD_FIXES 1 // disables calling scan kernel if gws == 0
+#endif
 using namespace std;
 
 typedef struct clContext{
