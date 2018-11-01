@@ -14,7 +14,9 @@
 #include <CL/cl.h>
 #endif
 #define MAX_SOURCE_SIZE (0x100000)
-
+#ifndef BUILD_AS_EXECUTABLE
+#define BUILD_AS_EXECUTABLE 0 // enables main function
+#endif
 using namespace std;
 
 typedef struct clContext{
