@@ -213,7 +213,7 @@ void test_scan(clContext *clCxt,int elemnum)
     free(cpuoutput);
     return;
 }
-#if BUILD_AS_EXECUTABLE
+#if BUILD_AS_EXECUTABLE == 1
 int main()
 {
     int elemnum = 1024 * 1024 * 16;
