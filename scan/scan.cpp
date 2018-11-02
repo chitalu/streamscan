@@ -34,8 +34,8 @@ void scan(clContext *clCxt,cl_mem &ginput,cl_mem &goutput,Plan *plan,int elemnum
     args.push_back( make_pair( sizeof(cl_mem) , (void *)&gadsys ));
     args.push_back( make_pair( sizeof(cl_mem) , (void *)&goutput ));
     args.push_back( make_pair( sizeof(cl_int) , (void *)&plan->workgroup ));
-    size_t globalthreads[3] = {plan->localthread * plan->workgroup,1,1};
-    size_t localthreads[3] = {plan->localthread,1,1};
+    size_t globalthreads[3] = {(int)plan->localthread * (int)plan->workgroup,1,1};
+    size_t localthreads[3] = {(int)plan->localthread,1,1};
     
     timeRcd.kerneltime = 0;
     timeRcd.totaltime = 0;
@@ -112,7 +112,7 @@ int check(int* c,int *g,int elemnum)
             return 0;
         }
     }
-    if(flag=1) cout<<"Result OK!"<<endl<<endl;
+    if(flag==1) cout<<"Result OK!"<<endl<<endl;
 }
 
 void test_scan(clContext *clCxt,int elemnum)
