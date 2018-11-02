@@ -34,8 +34,8 @@ void scan(clContext *clCxt,cl_mem &ginput,cl_mem &goutput,Plan *plan,int elemnum
     args.push_back( make_pair( sizeof(cl_mem) , (void *)&gadsys ));
     args.push_back( make_pair( sizeof(cl_mem) , (void *)&goutput ));
     args.push_back( make_pair( sizeof(cl_int) , (void *)&plan->workgroup ));
-    size_t globalthreads[3] = {(int)plan->localthread * (int)plan->workgroup,1,1};
-    size_t localthreads[3] = {(int)plan->localthread,1,1};
+    size_t globalthreads[3] = {(size_t)plan->localthread * (size_t)plan->workgroup,(size_t)1,(size_t)1};
+    size_t localthreads[3] = {(size_t)plan->localthread,(size_t)1,(size_t)1};
     
     timeRcd.kerneltime = 0;
     timeRcd.totaltime = 0;
